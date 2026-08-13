@@ -7,38 +7,75 @@ import {
      GoogleAuthProvider,
      FacebookAuthProvider ,
      sendEmailVerification,
-      onAuthStateChanged
+    onAuthStateChanged,
+    getFirestore,
+    doc,
+    setDoc,
+    getDoc,
+    serverTimestamp
     }  from "./firebase-config.js";
 import app from "./firebase-config.js";
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const auth = getAuth(app);
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
 
 
 // const auth = getAuth();
 //----------------------- Register User -----------------------
 document.getElementById("signup-form")?.addEventListener("submit", async function(e) {
     e.preventDefault();
-    const email = document.querySelector('input[placeholder="Enter your email"]').value;
-    const password = document.querySelector('input[placeholder="Create password"]').value;
+  let name = document.getElementById('name')?.value;
+  let contact = document.getElementById('contact')?.value;
+  let country = document.getElementById('country')?.value;
+  let email = document.getElementById('email')?.value;
+  let password = document.getElementById('password')?.value;
+  let alert_msg = document.getElementById("alert-msg");
+  // console.log("User signed up:", name, contact, country, email, password);
 
 try{
 
  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
- 
- const user = userCredential.user;
+  const user = userCredential.user;
+  
+  // Add a new document in collection "users"
+await setDoc(doc(db, "users", user?.uid), {
+  email: email,
+  name: name,
+  contact: contact,
+  country: country,
+  createdAt: serverTimestamp()
+});
  if(!user.emailVerified){
+
    // signOut(auth); // Sign out the user if email is not verified
     await sendEmailVerification(user);
-    console.log("Verification email sent to:", user.email);
+   
+      if (alert_msg) {
+      alert_msg.style.display = "block";
+    alert_msg.style.color = "green";
+    alert_msg.innerText = "Verification email sent to: " + user.email;
+}
+    // console.log("Verification email sent to:", user.email);
  }
  else{
-    console.log("User signed up and email is verified:", user);
+  if (alert_msg) {
+  alert_msg.style.display = "block";
+    alert_msg.style.color = "green";
+    alert_msg.innerText = "Email already in use! "
+}
+   
  }
- console.log("User signed up:", user);
+
 }
 catch(error){
         console.error("Error Signing Up:", error.message);
+     if (alert_msg) {
+     alert_msg.style.display = "block";
+    alert_msg.style.color = "green";
+    alert_msg.innerText = "Email ID already in use! "
+}
 }
 })
 

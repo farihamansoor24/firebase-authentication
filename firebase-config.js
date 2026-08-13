@@ -10,10 +10,18 @@
      signInWithPopup, 
      GoogleAuthProvider,
      FacebookAuthProvider ,
-       sendEmailVerification,
-       onAuthStateChanged,
+     sendEmailVerification,
+     onAuthStateChanged,
 
     }    from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+    import { 
+      getFirestore,
+      doc,
+      setDoc,
+      getDoc,
+      serverTimestamp
+    
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -33,5 +41,5 @@
   const app = initializeApp(firebaseConfig);
 //   const analytics = getAnalytics(app);
 export default app;
-export { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider,   sendEmailVerification, onAuthStateChanged
+export { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider,   sendEmailVerification, onAuthStateChanged, getFirestore, doc, setDoc, getDoc, serverTimestamp
  };
