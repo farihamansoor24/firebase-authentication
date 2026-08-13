@@ -210,16 +210,9 @@ button:hover{
 }
 
 .login-button{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:10px;
     background:linear-gradient(135deg,#4f46e5,#7c3aed);
     color:#fff;
-    font-size:17px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.3s;
+   
 }
 
 button:hover{
@@ -242,7 +235,7 @@ button:hover{
 .signup-link a:hover{
     text-decoration:underline;
 }
-button{
+.sign-up-btn{
     display:flex;
     align-items:center;
     justify-content:center;
