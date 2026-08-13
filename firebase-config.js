@@ -11,6 +11,7 @@
      GoogleAuthProvider,
      FacebookAuthProvider ,
        sendEmailVerification,
+       onAuthStateChanged,
 
     }    from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
   // TODO: Add SDKs for Firebase products that you want to use
@@ -32,5 +33,5 @@
   const app = initializeApp(firebaseConfig);
 //   const analytics = getAnalytics(app);
 export default app;
-export { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider,   sendEmailVerification,
+export { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider,   sendEmailVerification, onAuthStateChanged
  };

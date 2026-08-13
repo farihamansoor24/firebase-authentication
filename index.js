@@ -7,7 +7,7 @@ import {
      GoogleAuthProvider,
      FacebookAuthProvider ,
      sendEmailVerification,
-
+      onAuthStateChanged
     }  from "./firebase-config.js";
 import app from "./firebase-config.js";
 const googleProvider = new GoogleAuthProvider();
@@ -41,6 +41,11 @@ catch(error){
         console.error("Error Signing Up:", error.message);
 }
 })
+
+document.getElementById("loginBtn")?.addEventListener("click", function() {
+  window.location.href = "./login.html"; // Redirect to login page
+
+});
 
 // --------------Login User ------------------------
 document.getElementById("login-form")?.addEventListener("submit", function(e) {
