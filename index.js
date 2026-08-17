@@ -21,7 +21,36 @@ const auth = getAuth(app);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
+// Check Page Type
+const currentPage = window.location.pathname;
+const isLoginPage = currentPage.includes("login.html") || currentPage.includes("sign-up.html");
+   let alert_msg = document.getElementById("alert-msg");
+// Firebase Auth Listener
+onAuthStateChanged(auth, (user) => {
 
+    if (user) {
+        // 1. User Signed In hai
+        console.log("Logged in user:", user.email);
+
+        if (isLoginPage) {
+            window.location.href = "./dashboard.html";
+        }
+    } else {
+        // 2. User Signed In NAHI hai
+        if (alert_msg) {
+    
+            alert_msg.style.display = "block";
+            alert_msg.style.color = "red";
+            alert_msg.innerText = "no user id signed in! "
+        }
+
+        // Agar user Dashboard/Main page par hai bina login kiye,
+        // toh usko Login page par redirect kar dein
+        if (!isLoginPage) {
+            window.location.href = "./login.html";
+        }
+    }
+});
 // const auth = getAuth();
 //----------------------- Register User -----------------------
 document.getElementById("signup-form")?.addEventListener("submit", async function(e) {
@@ -72,8 +101,9 @@ await setDoc(doc(db, "users", user?.uid), {
 catch(error){
         console.error("Error Signing Up:", error.message);
      if (alert_msg) {
+      
      alert_msg.style.display = "block";
-    alert_msg.style.color = "green";
+    alert_msg.style.color = "red";
     alert_msg.innerText = "Email ID already in use! "
 }
 }
@@ -160,4 +190,5 @@ catch(error){
    console.error("Error signing in with Facebook:", error.message);
 }
 }) 
+
  

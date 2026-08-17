@@ -246,3 +246,396 @@ body {
         font-size: 24px;
     }
 }
+
+/* style.css */
+
+
+
+/* Success & Error State Classes (JS ke liye) */
+.msg.success {
+    display: block;
+    background-color: #e6f4ea;
+    color: #137333;
+    border: 1px solid #ceead6;
+}
+
+.msg.error {
+    display: block;
+    background-color: #fce8e6;
+    color: #c5221f;
+    border: 1px solid #fad2cf;
+}
+
+/* Login Container & Card */
+.login-container {
+    width: 100%;
+    max-width: 440px;
+}
+
+.login-form {
+    background: #ffffff;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e9edf7;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #1b2559;
+    margin-bottom: 0.3rem;
+}
+
+.login-form p {
+    color: #707ebe;
+    font-size: 0.95rem;
+    margin-bottom: 1.8rem;
+}
+
+/* Input Fields */
+.input-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2rem;
+}
+
+.input-box label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1b2559;
+    margin-bottom: 0.5rem;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #e0e5f2;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: #2b3674;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-box input:focus {
+    border-color: #4318ff;
+    box-shadow: 0 0 0 4px rgba(67, 24, 255, 0.1);
+}
+
+/* Options (Remember Me & Forgot Password) */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    color: #707ebe;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+}
+
+.options input[type="checkbox"] {
+    accent-color: #4318ff;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.options a {
+    color: #4318ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons Base Style */
+.sign-up-btn {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    transition: all 0.3s ease;
+    margin-bottom: 0.8rem;
+}
+
+/* Main Login Button */
+.login-button {
+    background-color: #4318ff;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(67, 24, 255, 0.25);
+    margin-top: 0.5rem;
+}
+
+.login-button:hover {
+    background-color: #3311db;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(67, 24, 255, 0.35);
+}
+
+/* Google Login Button */
+.google-btn {
+    background-color: #ffffff;
+    color: #2b3674;
+    border: 1px solid #e0e5f2;
+}
+
+.google-btn img {
+    width: 18px;
+    height: 18px;
+}
+
+.google-btn:hover {
+    background-color: #f8f9ff;
+    border-color: #c0ccf8;
+    transform: translateY(-2px);
+}
+
+/* Facebook Login Button */
+.btn-fb {
+    background-color: #1877f2;
+    color: #ffffff;
+}
+
+.btn-fb svg {
+    width: 18px;
+    height: 18px;
+    fill: #ffffff;
+}
+
+.btn-fb:hover {
+    background-color: #166fe5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(24, 119, 242, 0.25);
+}
+
+/* Signup Link */
+.signup-link {
+    text-align: center;
+    font-size: 0.88rem;
+    color: #707ebe;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+.signup-link a {
+    color: #4318ff;
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 0.2rem;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+    .login-form {
+        padding: 1.8rem 1.2rem;
+    }
+}
+
+/* Index Page Reset & Base Styles */
+
+body.dashboard {
+    background-color: #f4f7fe;
+    color: #2b3674;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+}
+
+/* Header & Navbar */
+header {
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #4318ff;
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #a3edd9;
+    color: #707ebe;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #4318ff;
+}
+
+/* Buttons */
+.btn, .hero-text button {
+    background-color: #4318ff;
+    color: #ffffff;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(67, 24, 255, 0.25);
+}
+
+.btn:hover, .hero-text button:hover {
+    background-color: #3311db;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(67, 24, 255, 0.35);
+}
+
+/* Hero Section */
+.hero {
+    max-width: 1200px;
+    margin: 2.5rem auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-text h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #1b2559;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-text p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+    max-width: 500px;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    object-fit: cover;
+}
+
+/* Features Cards */
+.features {
+    max-width: 1200px;
+    margin: 1rem auto 4rem;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+}
+
+.card {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+    border: 1px solid #e9edf7;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 35px rgba(67, 24, 255, 0.08);
+    border-color: rgba(67, 24, 255, 0.2);
+}
+
+.card h3 {
+    font-size: 1.25rem;
+    color: #1b2559;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card p {
+    color: #707ebe;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    background-color: #ffffff;
+    border-top: 1px solid #e9edf7;
+    text-align: center;
+    padding: 1.5rem;
+    color: #707ebe;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 868px) {
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        margin: 1.5rem auto;
+    }
+
+    .hero-text p {
+        margin: 0 auto 1.8rem;
+    }
+
+    .nav-links {
+        display: none; /* Mobile menu ke liye yahan toggle class add ki ja sakti hai */
+    }
+}
