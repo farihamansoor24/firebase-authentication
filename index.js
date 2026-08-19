@@ -32,16 +32,16 @@ onAuthStateChanged(auth, (user) => {
         // 1. User Signed In hai
         console.log("Logged in user:", user.email);
 
-        if (isLoginPage) {
-            window.location.href = "./dashboard.html";
-        }
+        // if (isLoginPage) {
+        //     window.location.href = "./dashboard.html";
+        // }
     } else {
         // 2. User Signed In NAHI hai
         if (alert_msg) {
     
             alert_msg.style.display = "block";
             alert_msg.style.color = "red";
-            alert_msg.innerText = "no user id signed in! "
+            alert_msg.innerText = "No user is signed in! "
         }
 
         // Agar user Dashboard/Main page par hai bina login kiye,
@@ -74,6 +74,7 @@ await setDoc(doc(db, "users", user?.uid), {
   name: name,
   contact: contact,
   country: country,
+  role: "User",
   createdAt: serverTimestamp()
 });
  if(!user.emailVerified){
@@ -114,30 +115,54 @@ document.getElementById("loginBtn")?.addEventListener("click", function() {
 
 });
 
+
+
+
 // --------------Login User ------------------------
-document.getElementById("login-form")?.addEventListener("submit", function(e) {
+document.getElementById("login-form")?.addEventListener("submit", async function(e) {
     e.preventDefault();
     const email = document.querySelector('input[placeholder="Enter your email"]').value;
     const password = document.querySelector('input[placeholder="Enter your password"]').value;
-  console.log("User logged in:", email, password);
-    signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
+    
+    let userCredential = await signInWithEmailAndPassword(auth, email, password);
+  try {
     // Signed in 
     const user = userCredential.user;
+    
      if(!user.emailVerified){
-       console.log("Email not verified. Please check your inbox for the verification email.");
-      // signOut(auth); // Sign out the user if email is not verified
+        if (alert_msg) {
+      alert_msg.style.display = "block";
+      alert_msg.style.color = "red";
+      alert_msg.innerText = "Email not verified. Please check your inbox for the verification email."
+  }
  }else{
-    console.log("User logged in:", user);
-     window.location.href = "index.html"; // Redirect to dashboard page
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      let data= docSnap.data();
+        if(data.role === "Admin"){
+            window.location.href = "./admin/index.html"; // Redirect to admin dashboard page
+        }
+        else
+        {
+          window.location.href = "./index.html"; // Redirect to user dashboard page
+        }
+    } else {
+        // docSnap.data() will be undefined in this case
+   if (alert_msg) {
+      alert_msg.style.display = "block";
+      alert_msg.style.color = "red";
+      alert_msg.innerText = "No such user data found in database. Please contact support."
+  }
+}
  }
     // ...
-  })
-  .catch((error) => {
+  }
+  catch(error) {
     const errorCode = error.code;
     const errorMessage = error.message;
     console.error("Error logging in:", errorCode, errorMessage);
-  });
+  };
 
 })
 

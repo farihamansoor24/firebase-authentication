@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="../admin/admin-style.css">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <i class="fa-solid fa-utensils logo-icon"></i>
+        <h2>Admin</h2>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="active"><a href="#"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-calendar-check"></i><span>Reservations</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-book-open"></i><span>Menu Items</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-users"></i><span>Customers</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-newspaper"></i><span>Blog Posts</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-gear"></i><span>Settings</span></a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <a href="#"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Header -->
+      <header class="top-header">
+        <div class="search-bar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search bookings, menu...">
+        </div>
+        <div class="user-profile">
+          <div class="notification-icon">
+            <i class="fa-solid fa-bell"></i>
+            <span class="badge">3</span>
+          </div>
+          <div class="profile-details">
+            <img src="https://ui-avatars.com/api/?name=Admin+User&background=c09d59&color=fff" alt="Admin Avatar">
+            <span>Admin</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Stats -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-info">
+            <p>Total Bookings</p>
+            <h3>1,248</h3>
+            <span class="trend positive"><i class="fa-solid fa-arrow-up"></i> +12% this week</span>
+          </div>
+          <div class="stat-icon gold"><i class="fa-solid fa-calendar-days"></i></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <p>Total Revenue</p>
+            <h3>$34,850</h3>
+            <span class="trend positive"><i class="fa-solid fa-arrow-up"></i> +8.5% this month</span>
+          </div>
+          <div class="stat-icon green"><i class="fa-solid fa-dollar-sign"></i></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <p>Menu Items</p>
+            <h3>86</h3>
+            <span class="trend neutral">Active items</span>
+          </div>
+          <div class="stat-icon blue"><i class="fa-solid fa-utensils"></i></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <p>Pending Reviews</p>
+            <h3>14</h3>
+            <span class="trend negative"><i class="fa-solid fa-arrow-down"></i> -2 today</span>
+          </div>
+          <div class="stat-icon orange"><i class="fa-solid fa-star"></i></div>
+        </div>
+      </section>
+
+      <!-- Data Section (Table & Activity) -->
+      <section class="data-section">
+        <!-- Recent Reservations Table -->
+        <div class="table-container">
+          <div class="table-header">
+            <h3>Recent Reservations</h3>
+            <button class="btn-primary">View All</button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Date & Time</th>
+                <th>Guests</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Sarah Jenkins</strong></td>
+                <td>Aug 19, 2026 - 7:30 PM</td>
+                <td>4 Persons</td>
+                <td><span class="status-badge confirmed">Confirmed</span></td>
+                <td><button class="action-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button></td>
+              </tr>
+              <tr>
+                <td><strong>Michael Brown</strong></td>
+                <td>Aug 19, 2026 - 8:00 PM</td>
+                <td>2 Persons</td>
+                <td><span class="status-badge pending">Pending</span></td>
+                <td><button class="action-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button></td>
+              </tr>
+              <tr>
+                <td><strong>Emma Watson</strong></td>
+                <td>Aug 20, 2026 - 6:30 PM</td>
+                <td>6 Persons</td>
+                <td><span class="status-badge confirmed">Confirmed</span></td>
+                <td><button class="action-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button></td>
+              </tr>
+              <tr>
+                <td><strong>David Miller</strong></td>
+                <td>Aug 20, 2026 - 9:00 PM</td>
+                <td>2 Persons</td>
+                <td><span class="status-badge cancelled">Cancelled</span></td>
+                <td><button class="action-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+</body>
+</html>
