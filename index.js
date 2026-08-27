@@ -34,15 +34,28 @@ const isLoginPage = currentPage.includes("login.html") || currentPage.includes("
         let userData = await getDoc(userRef);
         if (userData.exists()) {
         let data= userData.data();
-       
+      
         let splitPath= window.location.href.split('/');
+      //  If logged in user redirect to login or signup 
+        if(splitPath.includes('login.html') || splitPath.includes('sign-up.html')){
+          if(data.role === "Admin"){
+             window.location.replace ("../admin/admin_dashboard.html"); // Redirect to admin dashboard page
+           
+        }
+         if(data.role === "User"){
+             window.location.replace ("../user_dashobard.html"); 
+             // Redirect to user dashboard page  
+        }
+        }
+        // ----If Admin or User want to access thier profile -----------
         if(data.role === "Admin"){
-          
+
             if(splitPath.includes('user') ){ 
                 window.location.replace('../admin/admin_dashboard.html')    
             }
         }
          if(data.role === "User"){
+
             if(splitPath.includes('admin') ){
                 window.location.replace('../user/user_dashboard.html')    
             }
