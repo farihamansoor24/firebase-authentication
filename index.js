@@ -199,7 +199,7 @@ document.getElementById("login-form")?.addEventListener("submit", async function
 // ----------- lOGOUT USER -------------------
 document.getElementById("logoutBtn")?.addEventListener("click", function() {
     signOut(auth).then(() => {
-        window.location.href = "login.html"; // Redirect to login page
+        window.location.href = "../login.html"; // Redirect to login page
     }).catch((error) => {
         console.error("Error logging out:", error.message);
     })
