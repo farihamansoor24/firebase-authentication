@@ -26,12 +26,28 @@ const currentPage = window.location.pathname;
 const isLoginPage = currentPage.includes("login.html") || currentPage.includes("sign-up.html");
    let alert_msg = document.getElementById("alert-msg");
 // Firebase Auth Listener
-onAuthStateChanged(auth, (user) => {
+ onAuthStateChanged(auth, async (user) => {
 
     if (user) {
         // 1. User Signed In hai
-        console.log("Logged in user:", user.email);
-
+        let userRef = doc(db, "users", user.uid);
+        let userData = await getDoc(userRef);
+        if (userData.exists()) {
+        let data= userData.data();
+       
+        let splitPath= window.location.href.split('/');
+        if(data.role === "Admin"){
+          
+            if(splitPath.includes('user') ){ 
+                window.location.replace('../admin/admin_dashboard.html')    
+            }
+        }
+         if(data.role === "User"){
+            if(splitPath.includes('admin') ){
+                window.location.replace('../user/user_dashboard.html')    
+            }
+        }
+      }
         // if (isLoginPage) {
         //     window.location.href = "./dashboard.html";
         // }
@@ -121,8 +137,9 @@ document.getElementById("loginBtn")?.addEventListener("click", function() {
 // --------------Login User ------------------------
 document.getElementById("login-form")?.addEventListener("submit", async function(e) {
     e.preventDefault();
-    const email = document.querySelector('input[placeholder="Enter your email"]').value;
-    const password = document.querySelector('input[placeholder="Enter your password"]').value;
+    const email = document.getElementById('email')?.value;
+    const password = document.getElementById('password')?.value;
+    const role= document.getElementById('role')?.value;
     
     let userCredential = await signInWithEmailAndPassword(auth, email, password);
   try {
@@ -141,11 +158,11 @@ document.getElementById("login-form")?.addEventListener("submit", async function
     if (docSnap.exists()) {
       let data= docSnap.data();
         if(data.role === "Admin"){
-            window.location.href = "./admin/index.html"; // Redirect to admin dashboard page
+            window.location.href = "./admin/admin_dashboard.html"; // Redirect to admin dashboard page
         }
         else
         {
-          window.location.href = "./index.html"; // Redirect to user dashboard page
+          window.location.href = "./user_dashobard.html"; // Redirect to user dashboard page
         }
     } else {
         // docSnap.data() will be undefined in this case

@@ -23,6 +23,7 @@ body {
     max-width: 680px; 
 }
 
+
 /* Alert Message Toast Box */
 .msg {
     background-color: #ffffff;
@@ -488,12 +489,14 @@ header {
     font-weight: 700;
     color: #4318ff;
     letter-spacing: -0.5px;
+    flex-grow:1;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
     gap: 2rem;
+    flex-grow: 1;
 }
 
 .nav-links a {
@@ -519,6 +522,7 @@ header {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(67, 24, 255, 0.25);
+    margin:0 5px;
 }
 
 .btn:hover, .hero-text button:hover {
