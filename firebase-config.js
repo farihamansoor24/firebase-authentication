@@ -12,6 +12,8 @@
      FacebookAuthProvider ,
      sendEmailVerification,
      onAuthStateChanged,
+     sendPasswordResetEmail, 
+     updateProfile
 
     }    from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
     import { 
@@ -19,7 +21,8 @@
       doc,
       setDoc,
       getDoc,
-      serverTimestamp
+      serverTimestamp,
+      updateDoc
     
     } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
   // TODO: Add SDKs for Firebase products that you want to use
@@ -41,5 +44,5 @@
   const app = initializeApp(firebaseConfig);
 //   const analytics = getAnalytics(app);
 export default app;
-export { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider,   sendEmailVerification, onAuthStateChanged, getFirestore, doc, setDoc, getDoc, serverTimestamp
+export { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider,   sendEmailVerification, onAuthStateChanged, getFirestore, doc, setDoc, getDoc, serverTimestamp,sendPasswordResetEmail ,updateProfile,updateDoc
  };

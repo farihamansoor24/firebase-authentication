@@ -33,7 +33,7 @@
                     Admin
                 </label>
 
-                <a href="#">Forgot Password?</a>
+                <a href="#" id="forgotPasswordLink">Forgot Password?</a>
             </div>
 
             <button type="submit" id="login" class="login-button sign-up-btn">Login</button>
@@ -55,6 +55,29 @@
             </p>
 
         </form>
+        <!-- Forgot Password Trigger Link/Button -->
+
+<!-- Forgot Password Modal -->
+<dialog id="forgotPasswordModal" class="reset-modal">
+  <div class="modal-content">
+    <h2>Reset Password</h2>
+    <p>Enter your account's email address to receive a password reset link.</p>
+    
+    <form id="resetPasswordForm" method="dialog">
+      <div class="form-group">
+        <label for="resetEmail">Email Address</label>
+        <input type="email" id="resetEmail" placeholder="name@example.com" required />
+      </div>
+
+      <div id="modalStatus" class="status-message"></div>
+
+      <div class="modal-actions">
+        <button type="button" id="closeModalBtn" class="btn-secondary">Cancel</button>
+        <button type="submit" id="sendResetBtn" class="btn-primary">Send Reset Link</button>
+      </div>
+    </form>
+  </div>
+</dialog>
 
     </div>
     <script type="module" src="index.js"></script>

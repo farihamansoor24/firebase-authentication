@@ -7,14 +7,18 @@ import {
      GoogleAuthProvider,
      FacebookAuthProvider ,
      sendEmailVerification,
-    onAuthStateChanged,
-    getFirestore,
-    doc,
-    setDoc,
-    getDoc,
-    serverTimestamp
+     onAuthStateChanged,
+     getFirestore,
+     doc,
+     setDoc,
+     getDoc,
+     serverTimestamp,
+     sendPasswordResetEmail ,
+     updateProfile,
+     updateDoc
     }  from "./firebase-config.js";
 import app from "./firebase-config.js";
+import {uploadToCloudinary} from "./cloudinary.js";
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const auth = getAuth(app);
@@ -34,7 +38,7 @@ const isLoginPage = currentPage.includes("login.html") || currentPage.includes("
         let userData = await getDoc(userRef);
         if (userData.exists()) {
         let data= userData.data();
-      
+        
         let splitPath= window.location.href.split('/');
       //  If logged in user redirect to login or signup 
         if(splitPath.includes('login.html') || splitPath.includes('sign-up.html')){
@@ -43,7 +47,7 @@ const isLoginPage = currentPage.includes("login.html") || currentPage.includes("
            
         }
          if(data.role === "User"){
-             window.location.replace ("../user_dashobard.html"); 
+             window.location.replace ("../user/user_dashobard.html"); 
              // Redirect to user dashboard page  
         }
         }
@@ -60,10 +64,17 @@ const isLoginPage = currentPage.includes("login.html") || currentPage.includes("
                 window.location.replace('../user/user_dashboard.html')    
             }
         }
+        if(data){ 
+        document.getElementById('name').value = data.name;
+        document.getElementById('email').value = data.email;
+        document.getElementById('contact').value = data.contact;
+        document.getElementById('country').value = data.country;
+        if(data.photoURL){
+          document.getElementById('profileImg').src = data.photoURL;
+        }
       }
-        // if (isLoginPage) {
-        //     window.location.href = "./dashboard.html";
-        // }
+      }
+        
     } else {
         // 2. User Signed In NAHI hai
         if (alert_msg) {
@@ -175,7 +186,7 @@ document.getElementById("login-form")?.addEventListener("submit", async function
         }
         else
         {
-          window.location.href = "./user_dashobard.html"; // Redirect to user dashboard page
+          window.location.href = "./user/user_dashboard.html"; // Redirect to user dashboard page
         }
     } else {
         // docSnap.data() will be undefined in this case
@@ -227,6 +238,8 @@ document.getElementById("googleLoginBtn")?.addEventListener("click", function() 
    
   });
 })
+
+
 // ------------------- Facebook Sign In -------------------
 facebookProvider.setCustomParameters({
   'display': 'popup'
@@ -245,5 +258,97 @@ catch(error){
    console.error("Error signing in with Facebook:", error.message);
 }
 }) 
+
+
+
+// ---------- Forgot Password --------------------------//
+const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+const modal = document.getElementById('forgotPasswordModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const resetForm = document.getElementById('resetPasswordForm');
+const resetEmailInput = document.getElementById('resetEmail');
+const statusMsg = document.getElementById('modalStatus');
+
+// 1. Open Modal on Link Click
+forgotPasswordLink?.addEventListener('click', (e) => {
+  e.preventDefault();
+  statusMsg.textContent = '';
+  statusMsg.className = 'status-message';
+  resetEmailInput.value = '';
+  modal.showModal(); // Opens modal with backdrop
+});
+// 2. Close Modal on Cancel Button Click
+closeModalBtn?.addEventListener('click', () => {
+  modal.close();
+});
+
+// 3. Handle Form Submission & Firebase Email Reset
+resetForm?.addEventListener('submit', async (e) => {
+  e.preventDefault(); // Stop form from closing automatically before request finishes
+
+  const email = resetEmailInput.value.trim();
+
+  if (!email) {
+    statusMsg.textContent = 'Please enter a valid email address.';
+    statusMsg.className = 'status-message error';
+    return;
+  }
+
+  try {
+    statusMsg.textContent = 'Sending reset email...';
+    statusMsg.className = 'status-message';
+
+    // Firebase Auth Request
+    await sendPasswordResetEmail(auth, email);
+
+    statusMsg.textContent = 'Reset link sent! Check your inbox.';
+    statusMsg.className = 'status-message success';
+
+    // Auto-close modal after 2 seconds
+    setTimeout(() => {
+      modal.close();
+    }, 2000);
+
+  } catch (error) {
+    console.error('Password reset error:', error);
+    statusMsg.textContent = error.message || 'Failed to send reset email.';
+    statusMsg.className = 'status-message error';
+  }
+});
+// ---------------------------------------------------------------//
+
+
+// -------------Update Profile --------------------------//
+document.getElementById('profileForm').addEventListener('submit', async(e)=>{
+  e.preventDefault();
+
+try  {
+  const file = document.getElementById('avatarInput').files[0];
+   const photoURL= await uploadToCloudinary(file); 
+    await updateProfile(auth.currentUser,
+     {
+  displayName: document.getElementById('name')?.value,
+  email: document.getElementById('email').value,
+   photoURL: photoURL,
+
+});
+const userRef = doc(db, "users", auth.currentUser.uid);
+
+// Set the "capital" field of the city 'DC'
+await updateDoc(userRef, {
+  name: document.getElementById('name')?.value,
+  email: document.getElementById('email').value,
+  contact: document.getElementById('contact')?.value,
+  country: document.getElementById('country').value,
+  photoURL: photoURL,
+});
+ console.log('Profile updated');
+}catch(error)
+ {
+  // An error occurred
+  // ...
+  console.log(error);
+};
+})
 
  
