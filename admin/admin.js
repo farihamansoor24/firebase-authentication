@@ -1,9 +1,23 @@
-import{signOut,db,getDocs,collection,auth,where,updateDoc,setDoc} from "../js/firebase-config.js";
+import{auth,onAuthStateChanged,signOut,db,getDocs,doc,getDoc,collection,where,updateDoc,setDoc} from "../js/firebase-config.js";
 
- let users=[]
+onAuthStateChanged(auth, async(user) => {
+  
+  if(user){
+  let userRef = doc(db, "users", user.uid);
+    let userData = await getDoc(userRef);
+    if (userData.exists()) {
+      let data = userData.data();
+  if(data && data.role !== "Admin"){
+
+    window.location.href = "../page_not_found.html";
+  }
+}
+}
+});
+let users=[]
  // Configuration
 let currentPage = 1;
-const rowsPerPage = 4;
+const rowsPerPage = 2;
 
 
 // DOM Elements
@@ -28,7 +42,6 @@ let filteredUsers = [...users];
 function renderTable() {
   userTableBody.innerHTML = "";
 
-  console.log(filteredUsers)
   // Pagination Calculation
   const start = (currentPage - 1) * rowsPerPage;
   const end = start + rowsPerPage;
@@ -40,9 +53,9 @@ function renderTable() {
     userTableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 2rem; color: #707ebe;">No users found.</td></tr>`;
   } else {
     paginatedItems.forEach(user => {
-      const isBlocked = user.status === "blocked";
+      const isBlocked = user.status === "Block";
       const row = document.createElement("tr");
-
+      
       row.innerHTML = `
         <td>
           <div class="user-info-cell">
@@ -58,7 +71,7 @@ function renderTable() {
           </span>
         </td>
         <td>
-          <button class="btn-action ${isBlocked ? 'btn-unblock' : 'btn-block'}" onclick="toggleUserStatus(${user.id})">
+          <button class="btn-action ${isBlocked ? 'btn-unblock' : 'btn-block'}" onclick="toggleUserStatus('${user.id}')">
             ${isBlocked ? 'Unblock' : 'Block'}
           </button>
         </td>
@@ -71,10 +84,16 @@ function renderTable() {
 }
 
 // Block / Unblock Toggle Functionality
-window.toggleUserStatus = function(userId) {
+window.toggleUserStatus = async function(userId) {
   const user = users.find(u => u.id === userId);
   if (user) {
-    user.status = user.status === "active" ? "blocked" : "active";
+    user.status = user.status === "Active" ? "Block" : "Active";
+    const userRef = doc(db, "users", userId);
+
+    // update the status  of user active or block in firestore
+    await updateDoc(userRef, {
+        status: user.status
+     });
     filterAndSearchData(); // Refresh View
   }
 };
