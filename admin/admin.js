@@ -17,7 +17,7 @@ onAuthStateChanged(auth, async(user) => {
 let users=[]
  // Configuration
 let currentPage = 1;
-const rowsPerPage = 2;
+const rowsPerPage = 3;
 
 
 // DOM Elements
@@ -59,7 +59,7 @@ function renderTable() {
       row.innerHTML = `
         <td>
           <div class="user-info-cell">
-            <img src="${user.photoUrl}" class="user-avatar" alt="${user.name}">
+            <img src="${user.photoURL?user.photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuKiVrFgaCktxXF0QFKHAD9ZwirmPjLN5jaE5c4hZkHg&s=10"}" class="user-avatar" alt="${user.name}">
             <strong>${user.name}</strong>
           </div>
         </td>
