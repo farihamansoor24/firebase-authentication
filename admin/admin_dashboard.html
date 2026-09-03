@@ -1,13 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Dashboard</title>
+  <link rel="stylesheet" href="admin_style.css">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-    <h1>Dashboard</h1>
-    <li><a href="#" id="logoutBtn">Logout</a></li>
-    <script type="module" src="../index.js"></script>
+<body class="admin-page">
+
+  <div class="admin-layout">
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <h2>AdminPanel</h2>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="active">
+          <a href="admin_dashboard.html">
+            <i class="fa-solid fa-chart-line"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="manage_users.html">
+            <i class="fa-solid fa-users"></i> <span>Manage Users</span>
+          </a>
+        </li>
+        <li>
+          <a href="settings.html">
+            <i class="fa-solid fa-gear"></i> <span>Settings</span>
+          </a>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <button id="adminLogoutBtn" class="btn-logout">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+      
+      <!-- Top Header Navigation -->
+      <header class="admin-header">
+        <div class="header-title">
+          <h1>Dashboard Overview</h1>
+          <p>Welcome back, Admin! Here is what's happening today.</p>
+        </div>
+        <div class="admin-profile">
+          <img src="https://via.placeholder.com/40" alt="Admin Avatar" class="user-avatar">
+          <span>Admin User</span>
+        </div>
+      </header>
+
+      <!-- Key Metrics / Stats Grid -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon icon-blue">
+            <i class="fa-solid fa-users"></i>
+          </div>
+          <div class="stat-details">
+            <h4>Total Users</h4>
+            <h2 id="totalUsersCount">1,248</h2>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon icon-green">
+            <i class="fa-solid fa-user-check"></i>
+          </div>
+          <div class="stat-details">
+            <h4>Active Users</h4>
+            <h2 id="activeUsersCount">1,180</h2>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon icon-red">
+            <i class="fa-solid fa-user-slash"></i>
+          </div>
+          <div class="stat-details">
+            <h4>Blocked Users</h4>
+            <h2 id="blockedUsersCount">68</h2>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dashboard Main Section -->
+      <div class="dashboard-content">
+        
+        <!-- Left Side: Recent User Activities -->
+        <section class="card">
+          <div class="card-header">
+            <h3>Recent System Activity</h3>
+            <a href="manage_users.html">View All Users</a>
+          </div>
+
+          <div class="table-responsive">
+            <table class="activity-table">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Action</th>
+                  <th>Date & Time</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="activityTableBody">
+                <tr>
+                  <td>Ali Khan</td>
+                  <td>User Registration</td>
+                  <td>Today, 02:30 PM</td>
+                  <td><span class="badge badge-active">Active</span></td>
+                </tr>
+                <tr>
+                  <td>Sara Ahmed</td>
+                  <td>Account Blocked</td>
+                  <td>Yesterday, 11:15 AM</td>
+                  <td><span class="badge badge-blocked">Blocked</span></td>
+                </tr>
+                <tr>
+                  <td>Zain Malik</td>
+                  <td>Profile Update</td>
+                  <td>Yesterday, 09:40 AM</td>
+                  <td><span class="badge badge-active">Active</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Right Side: Quick Action Widgets -->
+        <section class="card">
+          <div class="card-header">
+            <h3>Quick Actions</h3>
+          </div>
+          <ul class="quick-links-list">
+            <li class="quick-link-item">
+              <a href="manage-users.html">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Review Pending Users</span>
+              </a>
+            </li>
+            <li class="quick-link-item">
+              <a href="manage-users.html">
+                <i class="fa-solid fa-user-shield"></i>
+                <span>Manage User Roles</span>
+              </a>
+            </li>
+            <li class="quick-link-item">
+              <a href="settings.html">
+                <i class="fa-solid fa-sliders"></i>
+                <span>System Settings</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="admin.js"></script>
 </body>
 </html>

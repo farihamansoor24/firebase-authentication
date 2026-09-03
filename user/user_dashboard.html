@@ -4,31 +4,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./user_style.css">
 </head>
-<body>
-      <!-- Top Navigation Bar -->
-    <header class="navbar">
-        <div class="logo">
-            <a href="index.html">MyPortal</a>
-        </div>
-        <nav>
+<body class="dashboard-page">
+
+    <header class="app-header">
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">MyPortal</a></div>
             <ul class="nav-links">
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="#" id="logout">Logout</a></li>
+                <li><a href="user_dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="./services.html">Services</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="./profile.html">Profile</a></li>
             </ul>
+            <div class="user-menu">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" alt="User Profile" class="user-avatar">
+                <button class="btn-logout" id="logoutBtn">Logout</button>
+            </div>
         </nav>
     </header>
-    <h2>User Dashboard</h2>
-    <p>Overview of user activity and status.</p>
-    <nav>
-        <a href="profile.html">My Profile</a> | 
-       <li><a href="#" id="logoutBtn">Logout</a></li>
-    </nav>
-    <script type="module" src="../index.js"></script>
+
+    <main>
+        <section class="welcome-header">
+            <div class="welcome-title">
+                <h1>Welcome back! 👋</h1>
+                <p>Here is what is happening with your account today.</p>
+            </div>
+            <button class="btn">+ New Activity</button>
+        </section>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon icon-blue">📊</div>
+                <div class="stat-details">
+                    <h4>Total Projects</h4>
+                    <h2>12</h2>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-green">✅</div>
+                <div class="stat-details">
+                    <h4>Completed Tasks</h4>
+                    <h2>48</h2>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-orange">⏳</div>
+                <div class="stat-details">
+                    <h4>Pending Requests</h4>
+                    <h2>3</h2>
+                </div>
+            </div>
+        </section>
+
+        <div class="dashboard-content">
+            <div class="main-column">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Recent Activity</h3>
+                        <a href="#">View All</a>
+                    </div>
+                    <table class="activity-table">
+                        <thead>
+                            <tr>
+                                <th>Activity</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Updated Profile Information</td>
+                                <td>Sep 02, 2026</td>
+                                <td><span class="badge badge-completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Submitted Project Review</td>
+                                <td>Sep 01, 2026</td>
+                                <td><span class="badge badge-completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Password Change Request</td>
+                                <td>Aug 28, 2026</td>
+                                <td><span class="badge badge-pending">Pending</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="side-column">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Quick Navigation</h3>
+                    </div>
+                    <ul class="quick-links-list">
+                        <li class="quick-link-item">
+                            <a href="./profile.html"><span>👤</span> Edit Profile</a>
+                        </li>
+                        <li class="quick-link-item">
+                            <a href="./services.html"><span>⚙️</span> Account Settings</a>
+                        </li>
+                        <li class="quick-link-item">
+                            <a href="./contact.html"><span>💬</span> Support & Help</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <p>© 2026 MyApp. All Rights Reserved.</p>
+    </footer>
+
+    <script type="module" src="../js/index.js"></script>
 </body>
 </html>

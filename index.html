@@ -6,43 +6,43 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="dashboard" id="body">
+<body id="body">
     <!-- Header -->
     <header>
         <nav class="navbar">
             <h2 class="logo">MyApp</h2>
             <ul class="nav-links">          
-                <li><a href="index.html">Home</a></li>
+               <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <div class="btn_class"></div>
-            <button id="loginBtn" class="btn" onclick="window.location.href='login.html'" >Login</button>
-            <button id="registerBtn" class="btn" onclick="window.location.href='register.html'">Register</button>
-            </nav>
+            <div class="nav-buttons">
+                <button id="loginBtn" class="btn btn-nav" onclick="window.location.href='login.html'">Login</button>
+                <button id="registerBtn" class="btn btn-nav" onclick="window.location.href='register.html'">Register</button>
+            </div>
         </nav>
     </header>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-text">
             <h1>Welcome Back!</h1>
-
             <p>
                 You have successfully logged in.
                 Explore your dashboard, manage your profile,
                 and enjoy all the features of our application.
             </p>
-            <button>Explore Now</button>
+            <button class="btn btn-hero">Explore Now</button>
         </div>
 
         <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=700"
-                 alt="Dashboard">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=700" alt="Dashboard">
         </div>
     </section>
+
     <!-- Features -->
     <section class="features">
-
         <div class="card">
             <h3>👤 Profile</h3>
             <p>Update your personal information and account settings.</p>
@@ -57,13 +57,13 @@
             <h3>⚙️ Settings</h3>
             <p>Customize your preferences and manage notifications.</p>
         </div>
-
     </section>
+
     <!-- Footer -->
     <footer>
         <p>© 2026 MyApp. All Rights Reserved.</p>
     </footer>
-<script type="module" src="index.js"></script>
 
+    <script type="module" src="./js/index.js"></script>
 </body>
 </html>

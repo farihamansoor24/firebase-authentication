@@ -4,69 +4,98 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edit Profile</title>
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="./user_style.css">
 </head>
-<body id="proflePage">
+<!-- Fix 1: Class ko 'profile-page' kar diya gaya hai -->
+<body class="profile-page" id="profilePage">
 
-  <main class="profile-container">
-    <header class="profile-header">
-      <h1>Edit Profile</h1>
-      <p>Update your personal information and public profile details.</p>
-    </header>
-
-    <form class="profile-form" id="profileForm">
-      
-      <section class="avatar-section">
-        <div class="avatar-wrapper">
-          <img src="https://via.placeholder.com/120" id="profileImg" alt="User Profile Picture" id="avatarPreview">
-          <label for="avatarInput" class="avatar-upload-btn" title="Upload new photo">
-            📷
-          </label>
-          <input type="file" id="avatarInput" accept="image/*" hidden>
-        </div>
-        <div class="avatar-info">
-          <h3>Profile Picture</h3>
-          <p>PNG, JPG or GIF. Max size 2MB.</p>
-        </div>
-      </section>
-
-      <hr class="divider">
-
-      <div class="form-grid">
-        
-        <div class="form-group">
-          <label for="firstName">Name</label>
-          <input type="text" id="name" name="name"  required>
-        </div>
-
-
-        <div class="form-group full-width">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-
-
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="contact" name="contact" >
-        </div>
-
-        <div class="form-group">
-          <label for="location">Location</label>
-          <input type="text" id="country" name="country" >
-        </div>
-
+  <!-- Header Navigation -->
+  <header class="app-header">
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">MyPortal</a>
       </div>
+      <ul class="nav-links">
+        <li><a href="user_dashboard.html">Dashboard</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../services.html">Services</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="profile.html" class="active">Profile</a></li>
+      </ul>
+      <div class="user-menu">
+        <img src="https://via.placeholder.com/120" alt="User Profile" class="user-avatar" id="profileImg">
+        <button id="logoutBtn" class="btn-logout">Logout</button>
+      </div>
+    </nav>
+  </header>
 
-      <hr class="divider">
+  <main>
+    <!-- Fix 2: Wrap form content in .profile-card to match user_style.css -->
+    <div class="profile-card">
+      <header class="profile-header">
+        <h1>Edit Profile</h1>
+        <p>Update your personal information and public profile details.</p>
+      </header>
 
-      <footer class="form-actions">
-        <button type="button" class="btn btn-secondary">Cancel</button>
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-      </footer>
+      <form class="profile-form" id="profileForm">
+        
+        <section class="avatar-section">
+          <div class="avatar-wrapper">
+            <img src="https://via.placeholder.com/120" id="avatarPreview" alt="User Profile Picture">
+            <label for="avatarInput" class="avatar-upload-btn" title="Upload new photo">
+              📷
+            </label>
+            <input type="file" id="avatarInput" accept="image/*" hidden>
+          </div>
+          <div class="avatar-info">
+            <h3>Profile Picture</h3>
+            <p>PNG, JPG or GIF. Max size 2MB.</p>
+          </div>
+        </section>
 
-    </form>
+        <hr class="divider">
+
+        <div class="form-grid">
+          
+          <div class="form-group full-width">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contact">Phone Number</label>
+            <input type="tel" id="contact" name="contact" placeholder="Enter contact number">
+          </div>
+
+          <div class="form-group">
+            <label for="country">Location / Country</label>
+            <input type="text" id="country" name="country" placeholder="Enter country or location">
+          </div>
+
+        </div>
+
+        <hr class="divider">
+
+        <footer class="form-actions">
+          <button type="button" class="btn btn-secondary">Cancel</button>
+          <!-- Fix 3: Button class changed to 'btn' -->
+          <button type="submit" class="btn">Save Changes</button>
+        </footer>
+
+      </form>
+    </div>
   </main>
-<script type="module" src="../index.js"></script>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>© 2026 MyApp. All Rights Reserved.</p>
+  </footer>
+
+  <script type="module" src="../js/index.js"></script>
 </body>
 </html>

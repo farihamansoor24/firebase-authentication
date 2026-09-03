@@ -22,7 +22,8 @@
       setDoc,
       getDoc,
       serverTimestamp,
-      updateDoc
+      updateDoc,
+      collection,where,query,getDocs
     
     } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
   // TODO: Add SDKs for Firebase products that you want to use
@@ -43,6 +44,9 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 //   const analytics = getAnalytics(app);
+const db = getFirestore(app);
 export default app;
-export { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider,   sendEmailVerification, onAuthStateChanged, getFirestore, doc, setDoc, getDoc, serverTimestamp,sendPasswordResetEmail ,updateProfile,updateDoc
+const auth = getAuth(app);
+export { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider,   sendEmailVerification, onAuthStateChanged, getFirestore, doc, setDoc, getDoc, serverTimestamp,sendPasswordResetEmail ,updateProfile,updateDoc  ,    collection,where,query,getDocs,db,auth
+
  };

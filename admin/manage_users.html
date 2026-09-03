@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Manage Users</title>
+  <link rel="stylesheet" href="admin_style.css">
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-page">
+
+  <!-- Admin Layout Wrapper -->
+  <div class="admin-layout">
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <h2>AdminPanel</h2>
+      </div>
+      <ul class="sidebar-menu">
+        <li>
+          <a href="admin-dashboard.html">
+            <i class="fa-solid fa-chart-line"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="manage-users.html">
+            <i class="fa-solid fa-users"></i> <span>Manage Users</span>
+          </a>
+        </li>
+        <li>
+          <a href="settings.html">
+            <i class="fa-solid fa-gear"></i> <span>Settings</span>
+          </a>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <button id="adminLogoutBtn" class="btn-logout">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+      
+      <!-- Top Navbar Header -->
+      <header class="admin-header">
+        <div class="header-title">
+          <h1>User Management</h1>
+          <p>Monitor, search, and manage registered system users.</p>
+        </div>
+        <div class="admin-profile">
+          <img src="https://via.placeholder.com/40" alt="Admin Avatar" class="user-avatar">
+          <span>Admin User</span>
+        </div>
+      </header>
+
+      <!-- Manage Users Content Card -->
+      <section class="card">
+        
+        <!-- Controls: Search & Filters -->
+        <div class="table-controls">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Search by name or email...">
+          </div>
+
+          <div class="filter-box">
+            <select id="statusFilter">
+              <option value="all">All Statuses</option>
+              <option value="active">Active</option>
+              <option value="blocked">Blocked</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Users Data Table -->
+        <div class="table-responsive">
+          <table class="activity-table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="userTableBody">
+              <!-- JS Dynamic Insertion -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-wrapper">
+          <span class="pagination-info" id="paginationInfo">Showing 0 of 0 users</span>
+          <div class="pagination-buttons">
+            <button id="prevBtn" class="pagination-btn" disabled>
+              <i class="fa-solid fa-chevron-left"></i> Previous
+            </button>
+            <div id="pageNumbers" class="page-numbers"></div>
+            <button id="nextBtn" class="pagination-btn">
+              Next <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
