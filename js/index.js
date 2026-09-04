@@ -223,7 +223,7 @@ document.getElementById("googleLoginBtn")?.addEventListener("click", async (e) =
     if (docSnap.exists()) {
       let data = docSnap.data();
       if (data.role === "Admin") {
-        window.location.replace("./admin/admin_dashboard.html"); // Redirect to admin dashboard page
+        window.location.href="../admin/admin_dashboard.html"; // Redirect to admin dashboard page
       }
       else {
         window.location.href = "./user/user_dashboard.html"; // Redirect to user dashboard page
